@@ -1,0 +1,70 @@
+.Merge {
+  padding: 10px;
+
+  &-github{
+    float: right;
+    cursor: pointer;
+    font-size: 22px;
+  }
+
+  &-console {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+
+    &>textarea {
+      resize: none;
+    }
+
+  }
+
+  &-file-len {
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  &-btns {
+    margin-bottom: 10px;
+
+    &>button {
+      margin-right: 10px;
+    }
+  }
+
+  &-drop {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &::after {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      opacity: 0;
+      content: "";
+    }
+
+    &>div {
+      font-size: 20px;
+      margin-top: 1em;
+      z-index: -1;
+    }
+
+    &>span {
+      z-index: -1;
+    }
+  }
+}
