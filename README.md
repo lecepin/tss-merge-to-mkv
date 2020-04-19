@@ -24,10 +24,10 @@ ts文件合并工具，同时支持其他视频格式转换原理mkv/ts/mp4
 
 ![](https://raw.githubusercontent.com/lecepin/tss-merge-to-mkv/master/readme/5.png)
 
-支持拖动：
+支持拖动添加文件：
 
 ![](https://raw.githubusercontent.com/lecepin/tss-merge-to-mkv/master/readme/3.png)
 
-支持的合并格式：
+支持的合并的格式：
 
 ![](https://raw.githubusercontent.com/lecepin/tss-merge-to-mkv/master/readme/6.png)
