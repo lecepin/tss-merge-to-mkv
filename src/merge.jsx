@@ -9,6 +9,7 @@ import {
   GithubOutlined,
 } from "@ant-design/icons";
 import { ipcRenderer, remote, shell } from "electron";
+import lpFileNameSort from "lp-file-name-sort/dist/index.esm.js";
 import "./merge.less";
 
 const SUPORT_INPUT_EXT = ["ts", "mp4", "mov", "avi", "mkv"];
@@ -71,42 +72,12 @@ export default class Merge extends React.Component {
           });
         }
       });
-
-    ipcRenderer.on("merge-merge-result", (event, arg) => {
-      // console.log(arg);
-      if (arg.type == "err") {
-        Modal.error({
-          title: "错误",
-          content: (
-            <div>
-              当前系统未安装ffmpeg，请在终端中执行：“brew install ffmpeg”
-              进行安装~
-            </div>
-          ),
-        });
-      }
-
-      if (arg.data.indexOf("muxing overhead") > -1) {
-        message.success("操作完成", 1);
-      }
-
-      this.setState(
-        {
-          cliContent: this.state.cliContent + arg.data + "\n",
-        },
-        () => {
-          if (this.refConsole) {
-            this.refConsole.scrollTop = this.refConsole.scrollHeight;
-          }
-        }
-      );
-    });
   }
 
   handleFileSort() {
     this.setState({
       fileList: this.state.fileList
-        .sort((a, b) => a.name.localeCompare(b.name))
+        .sort((a, b) => lpFileNameSort(a.name, b.name))
         .map((item, key) => ({
           ...item,
           num: key + 1,
@@ -175,6 +146,36 @@ export default class Merge extends React.Component {
             num: key + 1,
           })),
         });
+    });
+
+    ipcRenderer.on("merge-merge-result", (event, arg) => {
+      // console.log(arg);
+      if (arg.type == "err") {
+        Modal.error({
+          title: "错误",
+          content: (
+            <div>
+              当前系统未安装ffmpeg，请在终端中执行：“brew install ffmpeg”
+              进行安装~
+            </div>
+          ),
+        });
+      }
+
+      if (arg.data.indexOf("muxing overhead") > -1) {
+        message.success("操作完成", 1);
+      }
+
+      this.setState(
+        {
+          cliContent: this.state.cliContent + arg.data + "\n",
+        },
+        () => {
+          if (this.refConsole) {
+            this.refConsole.scrollTop = this.refConsole.scrollHeight;
+          }
+        }
+      );
     });
   }
 
