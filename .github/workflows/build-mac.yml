@@ -1,0 +1,20 @@
+name: Build pack
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install and Build
+      run: |
+        npm install
+        npm run pack
+    - name: Upload file
+      uses: actions/upload-artifact@v2
+      with:
+        name: packs
+        path: packs
+  
