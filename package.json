@@ -61,9 +61,8 @@
     "start-web": "node scripts/start.js",
     "build-web": "node scripts/build.js",
     "build-electron": "webpack --config config/webpack-electron.config.js",
-    "pack": "npm run build-web && npm run build-electron && electron-builder",
-    "pack-wm": "npm run build-web && npm run build-electron && electron-builder -w -m --publish never",
-    "pack-nomodule": "npm run build-web && npm run build-electron && rm -rf node_modules && electron-builder",
+    "pack": "npm run build-web && npm run build-electron && electron-builder --publish never",
+    "pack-nomodule": "npm run build-web && npm run build-electron && rm -rf node_modules && electron-builder --publish never",
     "pack-win": "npm run build-web && npm run build-electron && electron-builder -w",
     "pack-mac": "npm run build-web && npm run build-electron && electron-builder -m"
   },
