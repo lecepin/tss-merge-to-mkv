@@ -62,7 +62,7 @@
     "build-web": "node scripts/build.js",
     "build-electron": "webpack --config config/webpack-electron.config.js",
     "pack": "npm run build-web && npm run build-electron && electron-builder",
-    "pack-wm": "npm run build-web && npm run build-electron && electron-builder -w -m",
+    "pack-wm": "npm run build-web && npm run build-electron && electron-builder -w -m --publish never",
     "pack-nomodule": "npm run build-web && npm run build-electron && rm -rf node_modules && electron-builder",
     "pack-win": "npm run build-web && npm run build-electron && electron-builder -w",
     "pack-mac": "npm run build-web && npm run build-electron && electron-builder -m"
@@ -102,11 +102,9 @@
       "dist/**/*"
     ],
     "mac": {
-      "icon": "dist/web/icon/icon.icns",
-      "publish": "never"
+      "icon": "dist/web/icon/icon.icns"
     },
     "win": {
-      "publish": "never",
       "target": [
         {
           "target": "nsis",
@@ -119,7 +117,6 @@
       "icon": "dist/web/icon/icon.ico"
     },
     "linux": {
-      "publish": "never",
       "icon": "dist/web/icon/icon.icns"
     },
     "extraResources": [
