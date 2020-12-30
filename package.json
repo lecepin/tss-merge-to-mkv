@@ -91,6 +91,7 @@
   },
   "babel": {},
   "build": {
+    "publish": "never",
     "productName": "TS视频合并工具",
     "appId": "com.tss_to_mkv.app",
     "directories": {
