@@ -19,5 +19,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: packs
-        path: packs 
+        path: |
+          packs/*dmg # mac 安装包
+          packs/*exe # window 安装包
   
