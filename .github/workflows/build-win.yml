@@ -20,5 +20,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: packs
-        path: packs
+        path: |
+          packs/*dmg
+          packs/*exe
   
