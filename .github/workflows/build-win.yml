@@ -8,13 +8,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macOS-latest]
+        os: [windows-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Install and Build
       run: |
-        npm install
-        npm run pack
+        npm i -g electron-builder@^21.2.0
+        npm i
+        npm run pack-nomodule
     - name: Upload file
       uses: actions/upload-artifact@v2
       with:
