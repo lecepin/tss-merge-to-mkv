@@ -2,19 +2,22 @@ name: Build Pack
 on:
   push:
     branches:
-      - master # master 分支 push 时触发工作流
+      - master 
 jobs:
-  pack: # 打包任务
-    runs-on: windows-latest # 在 windows 系统中运行
+  pack: 
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [windows-latest, macOS-latest] 
     steps:
-    - uses: actions/checkout@v2 # 下载仓库代码到工作流机器中
-    - name: Install and Pack # 安装依赖并且进行构建
+    - uses: actions/checkout@v2 
+    - name: Install and Pack 
       run: |
         npm install
         npm run pack
-    - name: Upload file # 将构建产物进行上传
+    - name: Upload file
       uses: actions/upload-artifact@v2
       with:
-        name: packs # 上传后的名字
-        path: packs # 将 packs 目录进行上传
+        name: packs
+        path: packs 
   
