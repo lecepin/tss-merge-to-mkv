@@ -17,9 +17,4 @@ jobs:
         npm run pack
     - name: Upload file
       uses: actions/upload-artifact@v2
-      with:
-        name: packs
-        path: |
-          packs/*dmg # mac 安装包
-          packs/*exe # window 安装包
   
