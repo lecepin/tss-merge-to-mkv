@@ -1,5 +1,7 @@
 # TS 视频合并工具
 
+> 在线免安装版本：[https://github.com/lecepin/web-tss-merge2mkv](https://github.com/lecepin/web-tss-merge2mkv)
+
 ![](https://raw.githubusercontent.com/lecepin/tss-merge-to-mkv/master/readme/icon.png)
 
 当下载 m3u8 资源时，通常产生的是多个 ts 视频文件，所以需要借助某些工具来将这些 ts 视频片段整合为一个视频文件。
