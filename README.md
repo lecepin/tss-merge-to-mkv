@@ -41,3 +41,9 @@ ts文件合并工具，同时支持其他视频格式转换原理mkv/ts/mp4
 ```bash
 echo ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/\\nELECTRON_BUILDER_BINARIES_MIRROR=https://npm.taobao.org/mirrors/electron-builder-binaries/ >> ~/.npmrc
 ```
+
+OR:
+```bash
+npm config set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
+npm config set ELECTRON_BUILDER_BINARIES_MIRROR=https://npm.taobao.org/mirrors/electron-builder-binaries/
+```
