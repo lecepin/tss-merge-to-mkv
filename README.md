@@ -47,3 +47,12 @@ OR:
 npm config set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 npm config set ELECTRON_BUILDER_BINARIES_MIRROR=https://npm.taobao.org/mirrors/electron-builder-binaries/
 ```
+
+## ⚠ 文件数量过多的解决方法
+
+如果合并的文件数量过多，成千上万上，会导致软件内的命令无法正常执行，可以使用以下脚本在终端中执行。
+
+```sh
+ls -l | sort -k 9,9 | awk '/^-/{print "file \"" $9 "\"" }' > file_list.txt
+ffmpeg -f concat -i file_list.txt -c copy output.mp4
+```
