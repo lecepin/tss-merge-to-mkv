@@ -1,6 +1,6 @@
 {
   "name": "tss-merge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "lecepin <leping086@vip.qq.com>",
   "description": "ts 格式视频合并工具；也可以其他视频格式进行转换使用。",
   "dependencies": {
