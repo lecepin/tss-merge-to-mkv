@@ -28,7 +28,6 @@ export default class Merge extends React.Component {
     remote.dialog
       .showOpenDialog({
         properties: ["openFile", "multiSelections"],
-        filters: [{ name: "视频格式", extensions: SUPORT_INPUT_EXT }],
       })
       .then((result) => {
         if (!result.filePaths.length) {
@@ -67,7 +66,7 @@ export default class Merge extends React.Component {
             cliContent: "控制台信息：\n",
           });
           ipcRenderer.send("merge-merge", {
-            input: fileList.map((item) => item.name).join("|"),
+            input: fileList.map((file) => `file '${file.name}'`).join("\n"),
             output: result.filePath,
           });
         }

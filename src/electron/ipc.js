@@ -1,7 +1,12 @@
 const { ipcMain, app } = require("electron");
+const fs = require("fs");
 const spawn = require("cross-spawn");
 const child_process = require("child_process");
-const { MERGE_CONFIG_TOOL_PATH } = require("./const");
+const {
+  MERGE_CONFIG_TOOL_PATH,
+  TMP_FILE_LIST,
+  MERGE_CONFIG_TOOL_MAC_PATH,
+} = require("./const");
 const os = require("os");
 
 let lastChildProcess;
@@ -21,11 +26,38 @@ const initIPC = () => {
 
     if (os.platform() == "win32") {
       cmd = MERGE_CONFIG_TOOL_PATH;
+    } else {
+      cmd = MERGE_CONFIG_TOOL_MAC_PATH;
+      try {
+        fs.accessSync(cmd, fs.constants.X_OK);
+        console.log("ffmpeg already has execute permissions");
+      } catch (err) {
+        try {
+          fs.chmodSync(cmd, 0o755);
+          console.log("Execute permissions set, running ffmpeg");
+        } catch (err) {
+          console.error("Error setting execute permissions for ffmpeg:", err);
+        }
+      }
     }
 
+    fs.writeFileSync(TMP_FILE_LIST, arg.input);
     lastChildProcess = spawn(
       cmd,
-      ["-y", "-i", `concat:${arg.input}`, "-c", "copy", arg.output],
+      [
+        "-y",
+        "-f",
+        "concat",
+        "-safe",
+        "0",
+        "-i",
+        TMP_FILE_LIST,
+        "-c",
+        "copy",
+        "-bsf:a",
+        "aac_adtstoasc",
+        arg.output,
+      ],
       {
         env: env,
       }
@@ -48,6 +80,9 @@ const initIPC = () => {
         type: "err",
         data: data.toString(),
       });
+    });
+    lastChildProcess.on("close", () => {
+      fs.unlinkSync(TMP_FILE_LIST);
     });
   });
 
