@@ -16,9 +16,10 @@ jobs:
         export NODE_OPTIONS=--openssl-legacy-provider 
         npm install
         npm run pack
-    - name: Upload file
-      uses: actions/upload-artifact@v2
-      with:
-        name: packs
-        path: |
-          *
+        ls packs -l
+    # - name: Upload file
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: packs
+    #     path: |
+    #       *
