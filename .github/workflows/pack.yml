@@ -18,6 +18,7 @@ jobs:
         npm run pack
         ls -l
         ls -l packs
+        node scripts/upload.js
     # - name: Upload file
     #   uses: actions/upload-artifact@v2
     #   with:
